@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "com.assessment.mediacapture"
-    compileSdk = flutter.compileSdkVersion
+    compileSdk = 37
     ndkVersion = flutter.ndkVersion
 
     compileOptions {
