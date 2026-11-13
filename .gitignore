@@ -40,3 +40,4 @@ app.*.map.json
 *.jks
 *.keystore
 key.properties
+*.code-workspace

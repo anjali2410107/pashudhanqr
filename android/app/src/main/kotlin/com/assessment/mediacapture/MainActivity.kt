@@ -1,5 +1,6 @@
-package com.example.pashudhanqr
+package com.assessment.mediacapture
 
 import io.flutter.embedding.android.FlutterActivity
 
 class MainActivity : FlutterActivity()
+
