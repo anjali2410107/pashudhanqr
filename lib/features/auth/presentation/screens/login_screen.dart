@@ -37,13 +37,6 @@ class _LoginScreenState extends State<LoginScreen> {
     }
   }
 
-  void _fillCredentials(String user, String pass) {
-    setState(() {
-      _usernameController.text = user;
-      _passwordController.text = pass;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -103,7 +96,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       const SizedBox(height: 8),
                       Text(
-                        'Sign in to test JWT authentication and multipart upload',
+                        'Sign in to continue',
                         textAlign: TextAlign.center,
                         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                               color: Colors.grey.shade600,
@@ -180,63 +173,6 @@ class _LoginScreenState extends State<LoginScreen> {
                                 ],
                               )
                             : const Text('Sign In'),
-                      ),
-                      const SizedBox(height: 24),
-
-                      Card(
-                        elevation: 0,
-                        color: Colors.blue.shade50,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12),
-                          side: BorderSide(color: Colors.blue.shade200),
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.all(12.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                children: [
-                                  Icon(Icons.info_outline, size: 18, color: Colors.blue.shade800),
-                                  const SizedBox(width: 8),
-                                  Text(
-                                    'Public Test Environment',
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.blue.shade900,
-                                      fontSize: 13,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              const SizedBox(height: 6),
-                              Text(
-                                'Use these pre-configured test credentials for https://api.testingapis.com',
-                                style: TextStyle(
-                                  fontSize: 12,
-                                  color: Colors.blue.shade900,
-                                ),
-                              ),
-                              const SizedBox(height: 10),
-                              Wrap(
-                                spacing: 8,
-                                runSpacing: 8,
-                                children: [
-                                  ActionChip(
-                                    avatar: const Icon(Icons.check_circle, size: 16, color: Colors.green),
-                                    label: const Text('Valid (user / user123)'),
-                                    onPressed: () => _fillCredentials('user', 'user123'),
-                                  ),
-                                  ActionChip(
-                                    avatar: const Icon(Icons.cancel, size: 16, color: Colors.red),
-                                    label: const Text('Invalid (wrong / pass)'),
-                                    onPressed: () => _fillCredentials('invalid_user', 'wrong_pass'),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
                       ),
                     ],
                   ),

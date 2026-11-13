@@ -17,29 +17,12 @@ class UploadScreen extends StatefulWidget {
 }
 
 class _UploadScreenState extends State<UploadScreen> {
-  bool _simulateDelay = false;
-  bool _simulateError = false;
-
-  int? get _delayParam => _simulateDelay ? 3 : null;
-  int? get _errorParam => _simulateError ? 503 : null;
-
   void _uploadItem(String id) {
-    context.read<UploadBloc>().add(
-          UploadItemStarted(
-            id,
-            simulateDelay: _delayParam,
-            simulateError: _errorParam,
-          ),
-        );
+    context.read<UploadBloc>().add(UploadItemStarted(id));
   }
 
   void _uploadAll() {
-    context.read<UploadBloc>().add(
-          UploadAllStarted(
-            simulateDelay: _delayParam,
-            simulateError: _errorParam,
-          ),
-        );
+    context.read<UploadBloc>().add(const UploadAllStarted());
   }
 
   void _removeItem(String id) {
@@ -71,81 +54,38 @@ class _UploadScreenState extends State<UploadScreen> {
           return Column(
             children: [
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                 color: Colors.white,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Row(
-                      children: const [
-                        Icon(Icons.tune, size: 16, color: AppTheme.primaryColor),
-                        SizedBox(width: 6),
-                        Text(
-                          'API Testing Options (testingapis.com):',
-                          style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 6),
-                    Row(
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        FilterChip(
-                          label: const Text('Simulate Delay (?delay=3)'),
-                          selected: _simulateDelay,
-                          onSelected: (val) {
-                            setState(() => _simulateDelay = val);
-                          },
-                          selectedColor: Colors.blue.shade100,
+                        Text(
+                          'Upload Queue (${items.length})',
+                          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
                         ),
-                        const SizedBox(width: 8),
-                        FilterChip(
-                          label: const Text('Simulate Error (?error=503)'),
-                          selected: _simulateError,
-                          onSelected: (val) {
-                            setState(() => _simulateError = val);
-                          },
-                          selectedColor: Colors.red.shade100,
+                        const SizedBox(height: 2),
+                        Text(
+                          'Pending: ${state.pendingCount}  •  Completed: ${state.successCount}',
+                          style: TextStyle(fontSize: 12, color: Colors.grey.shade600),
                         ),
                       ],
                     ),
-                    if (state.pendingCount > 0) ...[
-                      const SizedBox(height: 10),
+                    if (state.pendingCount > 0)
                       ElevatedButton.icon(
+                        style: ElevatedButton.styleFrom(
+                          visualDensity: VisualDensity.compact,
+                        ),
                         onPressed: state.isUploading ? null : _uploadAll,
-                        icon: const Icon(Icons.cloud_upload),
-                        label: Text('Upload All Pending (${state.pendingCount})'),
+                        icon: const Icon(Icons.cloud_upload, size: 16),
+                        label: Text('Upload All (${state.pendingCount})'),
                       ),
-                    ],
                   ],
                 ),
               ),
               const Divider(height: 1),
-
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                color: Colors.grey.shade100,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Total: ${items.length}  •  Pending: ${state.pendingCount}  •  Done: ${state.successCount}',
-                      style: TextStyle(fontSize: 12, color: Colors.grey.shade800),
-                    ),
-                    if (state.isUploading)
-                      Row(
-                        children: const [
-                          SizedBox(
-                            width: 14,
-                            height: 14,
-                            child: CircularProgressIndicator(strokeWidth: 2),
-                          ),
-                          SizedBox(width: 6),
-                          Text('Uploading...', style: TextStyle(fontSize: 12)),
-                        ],
-                      ),
-                  ],
-                ),
-              ),
 
               Expanded(
                 child: items.isEmpty
@@ -360,7 +300,7 @@ class _UploadScreenState extends State<UploadScreen> {
                         Icon(Icons.check_circle, size: 16, color: Colors.green.shade700),
                         const SizedBox(width: 6),
                         Text(
-                          'Echo Endpoint Receipt Verified',
+                          'Upload Verified',
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             color: Colors.green.shade900,
@@ -371,10 +311,10 @@ class _UploadScreenState extends State<UploadScreen> {
                     ),
                     const SizedBox(height: 6),
                     if (item.echoResult!.primaryFile != null) ...[
-                      _buildEchoRow('Echoed File:', item.echoResult!.primaryFile!.fileName),
+                      _buildEchoRow('Uploaded File:', item.echoResult!.primaryFile!.fileName),
                       _buildEchoRow('Content-Type:', item.echoResult!.primaryFile!.contentType),
                       _buildEchoRow(
-                        'Echoed Size:',
+                        'File Size:',
                         '${FileUtils.formatFileSize(item.echoResult!.primaryFile!.size)} (${item.echoResult!.primaryFile!.size} bytes)',
                       ),
                     ],

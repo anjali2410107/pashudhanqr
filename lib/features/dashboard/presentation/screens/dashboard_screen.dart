@@ -235,7 +235,7 @@ class DashboardScreen extends StatelessWidget {
                     return _buildActionCard(
                       context,
                       title: 'Upload Manager',
-                      subtitle: 'Multipart upload to /api/echo, track progress & echo response',
+                      subtitle: 'Upload media, track live progress & view status',
                       icon: Icons.cloud_upload_outlined,
                       color: const Color(0xFF6C5CE7),
                       badgeText: badgeCount > 0 ? '$badgeCount item(s)' : null,
@@ -246,68 +246,6 @@ class DashboardScreen extends StatelessWidget {
                       },
                     );
                   },
-                ),
-                const SizedBox(height: 20),
-
-                Card(
-                  color: Colors.amber.shade50,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(14),
-                    side: BorderSide(color: Colors.amber.shade300),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          children: [
-                            Icon(Icons.science_outlined, color: Colors.amber.shade900),
-                            const SizedBox(width: 8),
-                            Text(
-                              'JWT Refresh Testing Lab',
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 14,
-                                color: Colors.amber.shade900,
-                              ),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 6),
-                        Text(
-                          'Test Acceptance Scenarios 4 & 5 against https://api.testingapis.com',
-                          style: TextStyle(fontSize: 12, color: Colors.amber.shade900),
-                        ),
-                        const SizedBox(height: 12),
-                        ElevatedButton.icon(
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.amber.shade800,
-                            foregroundColor: Colors.white,
-                            minimumSize: const Size(double.infinity, 42),
-                          ),
-                          onPressed: () {
-                            context.read<AuthBloc>().add(const AuthTestTokenExpiryRequested());
-                          },
-                          icon: const Icon(Icons.autorenew, size: 18),
-                          label: const Text('Test Token Expiry & Auto-Refresh (Scenario 4)'),
-                        ),
-                        const SizedBox(height: 8),
-                        OutlinedButton.icon(
-                          style: OutlinedButton.styleFrom(
-                            foregroundColor: Colors.amber.shade900,
-                            side: BorderSide(color: Colors.amber.shade800),
-                            minimumSize: const Size(double.infinity, 42),
-                          ),
-                          onPressed: () {
-                            context.read<AuthBloc>().add(const AuthTestRefreshFailureRequested());
-                          },
-                          icon: const Icon(Icons.no_accounts_outlined, size: 18),
-                          label: const Text('Test Refresh Failure -> Auto Logout (Scenario 5)'),
-                        ),
-                      ],
-                    ),
-                  ),
                 ),
               ],
             ),
