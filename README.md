@@ -7,15 +7,14 @@ A Flutter Android application demonstrating an end-to-end mobile workflow: JWT a
 ## Table of Contents
 
 1. [Overview](#overview)
-2. [How the App Works on Your Phone](#how-the-app-works-on-your-phone)
-3. [Architecture and Code Organization](#architecture-and-code-organization)
-4. [Key Packages and Technical Stack](#key-packages-and-technical-stack)
-5. [API Endpoints and Data Contracts](#api-endpoints-and-data-contracts)
-6. [Automatic Token Refresh Workflow](#automatic-token-refresh-workflow)
-7. [Device Permissions and Hardware Handling](#device-permissions-and-hardware-handling)
-8. [Building the Release APK and App Bundle](#building-the-release-apk-and-app-bundle)
-9. [Acceptance Scenarios Verification](#acceptance-scenarios-verification)
-
+2. [How the App Works on Your Phone]
+3. [Architecture and Code Organization]
+4. [Key Packages and Technical Stack]
+5. [API Endpoints and Data Contracts]
+6. [Automatic Token Refresh Workflow]
+7. [Device Permissions and Hardware Handling]
+8. [Building the Release APK and App Bundle]
+9. [Acceptance Scenarios Verification]
 ---
 
 ## Overview
