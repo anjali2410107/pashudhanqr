@@ -16,7 +16,6 @@ import 'features/upload/presentation/bloc/upload_bloc.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  // Set system UI overlay style
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
@@ -24,10 +23,7 @@ void main() async {
     ),
   );
 
-  // Initialize Core Services
   final tokenStorage = TokenStorage();
-
-  // Reference for AuthBloc to receive interceptor session expired notifications
   AuthBloc? authBloc;
 
   final dioClient = DioClient(

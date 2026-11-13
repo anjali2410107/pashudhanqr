@@ -70,7 +70,6 @@ class _UploadScreenState extends State<UploadScreen> {
 
           return Column(
             children: [
-              // Simulation Controls Panel
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
                 color: Colors.white,
@@ -122,7 +121,6 @@ class _UploadScreenState extends State<UploadScreen> {
               ),
               const Divider(height: 1),
 
-              // Queue Summary Bar
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                 color: Colors.grey.shade100,
@@ -149,7 +147,6 @@ class _UploadScreenState extends State<UploadScreen> {
                 ),
               ),
 
-              // Items List
               Expanded(
                 child: items.isEmpty
                     ? Center(
@@ -196,11 +193,9 @@ class _UploadScreenState extends State<UploadScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Top Row: Thumbnail + Info + Status
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // Thumbnail
                 GestureDetector(
                   onTap: () {
                     Navigator.of(context).push(
@@ -230,7 +225,6 @@ class _UploadScreenState extends State<UploadScreen> {
                 ),
                 const SizedBox(width: 12),
 
-                // File Details
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -276,7 +270,6 @@ class _UploadScreenState extends State<UploadScreen> {
                   ),
                 ),
 
-                // Status Badge & Action
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
@@ -294,7 +287,6 @@ class _UploadScreenState extends State<UploadScreen> {
               ],
             ),
 
-            // Progress Bar if Uploading
             if (isUploadingThis) ...[
               const SizedBox(height: 12),
               Column(
@@ -318,7 +310,6 @@ class _UploadScreenState extends State<UploadScreen> {
               ),
             ],
 
-            // Error display + Retry Button
             if (item.status == UploadStatus.failed) ...[
               const SizedBox(height: 10),
               Container(
@@ -352,7 +343,6 @@ class _UploadScreenState extends State<UploadScreen> {
               ),
             ],
 
-            // Success Display: Echo Response Metadata
             if (item.status == UploadStatus.success && item.echoResult != null) ...[
               const SizedBox(height: 10),
               Container(
@@ -398,7 +388,6 @@ class _UploadScreenState extends State<UploadScreen> {
               ),
             ],
 
-            // Idle Action Button
             if (item.status == UploadStatus.idle) ...[
               const SizedBox(height: 10),
               Align(

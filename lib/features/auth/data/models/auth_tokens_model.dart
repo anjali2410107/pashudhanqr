@@ -41,3 +41,4 @@ class AuthTokensModel extends Equatable {
   @override
   List<Object?> get props => [accessToken, refreshToken, tokenType, expiresIn, user];
 }
+

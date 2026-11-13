@@ -37,14 +37,11 @@ class AuthSessionExpiredEvent extends AuthEvent {
   const AuthSessionExpiredEvent();
 }
 
-/// Scenario 4: Injects expired access token and triggers GET /me,
-/// proving AuthInterceptor refreshes the token and retries successfully.
 class AuthTestTokenExpiryRequested extends AuthEvent {
   const AuthTestTokenExpiryRequested();
 }
 
-/// Scenario 5: Injects invalid refresh token and expired access token,
-/// proving refresh failure triggers session clear and redirect to login.
 class AuthTestRefreshFailureRequested extends AuthEvent {
   const AuthTestRefreshFailureRequested();
 }
+

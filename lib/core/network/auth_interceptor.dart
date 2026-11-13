@@ -24,7 +24,6 @@ class AuthInterceptor extends QueuedInterceptor {
     RequestOptions options,
     RequestInterceptorHandler handler,
   ) async {
-    // If request explicitly opts out of auth header, proceed as is
     if (options.extra['noAuth'] == true) {
       return handler.next(options);
     }
@@ -51,7 +50,6 @@ class AuthInterceptor extends QueuedInterceptor {
     final response = err.response;
     final requestOptions = err.requestOptions;
 
-    // Check if the error is 401 and hasn't been retried yet
     final isUnauthorized = response?.statusCode == 401;
     final alreadyRetried = requestOptions.extra['retried'] == true;
     final isRefreshRequest =
@@ -63,10 +61,8 @@ class AuthInterceptor extends QueuedInterceptor {
       try {
         final newAccessToken = await _handleTokenRefresh();
         if (newAccessToken != null && newAccessToken.isNotEmpty) {
-          // Update header with fresh access token
           requestOptions.headers['Authorization'] = 'Bearer $newAccessToken';
 
-          // Clone and retry original request
           final retryResponse = await dio.fetch(requestOptions);
           return handler.resolve(retryResponse);
         } else {
@@ -83,7 +79,6 @@ class AuthInterceptor extends QueuedInterceptor {
   }
 
   Future<String?> _handleTokenRefresh() async {
-    // If another request is currently refreshing the token, await that same refresh
     if (_isRefreshing && _refreshCompleter != null) {
       return _refreshCompleter!.future;
     }
@@ -98,7 +93,6 @@ class AuthInterceptor extends QueuedInterceptor {
         return null;
       }
 
-      // Use a clean Dio instance to avoid interceptor recursion
       final refreshDio = Dio(
         BaseOptions(
           baseUrl: ApiConstants.baseUrl,

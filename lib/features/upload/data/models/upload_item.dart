@@ -81,3 +81,4 @@ class UploadItem extends Equatable {
         createdAt,
       ];
 }
+

@@ -76,7 +76,6 @@ class DashboardScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                // User Profile Card
                 Card(
                   child: Padding(
                     padding: const EdgeInsets.all(16.0),
@@ -142,7 +141,6 @@ class DashboardScreen extends StatelessWidget {
                           ],
                         ),
 
-                        // Claims details
                         if (user.claims.isNotEmpty) ...[
                           const SizedBox(height: 14),
                           const Divider(),
@@ -197,14 +195,12 @@ class DashboardScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 16),
 
-                // Main Navigation Modules Header
                 Text(
                   'Media Modules',
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(height: 10),
 
-                // Module 1: Camera
                 _buildActionCard(
                   context,
                   title: 'Device Camera',
@@ -219,7 +215,6 @@ class DashboardScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 10),
 
-                // Module 2: Gallery
                 _buildActionCard(
                   context,
                   title: 'Media Gallery',
@@ -234,7 +229,6 @@ class DashboardScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 10),
 
-                // Module 3: Upload Manager
                 BlocBuilder<UploadBloc, UploadState>(
                   builder: (context, uploadState) {
                     final badgeCount = uploadState.items.length;
@@ -255,7 +249,6 @@ class DashboardScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 20),
 
-                // JWT Refresh & Expiry Test Lab Card
                 Card(
                   color: Colors.amber.shade50,
                   shape: RoundedRectangleBorder(

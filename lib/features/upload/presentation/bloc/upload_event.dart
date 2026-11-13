@@ -79,3 +79,4 @@ class UploadItemFailed extends UploadEvent {
 class UploadClearCompleted extends UploadEvent {
   const UploadClearCompleted();
 }
+

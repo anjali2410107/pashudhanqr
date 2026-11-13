@@ -43,7 +43,6 @@ class _CameraScreenState extends State<CameraScreen>
     }
 
     if (state == AppLifecycleState.inactive || state == AppLifecycleState.paused) {
-      // Free camera resource when app goes to background
       cameraController.dispose();
       _controller = null;
       if (mounted) {
@@ -209,7 +208,6 @@ class _CameraScreenState extends State<CameraScreen>
     );
 
     if (accepted == true && mounted) {
-      // Pop camera screen back to dashboard/uploads
       Navigator.of(context).pop();
     }
   }
@@ -290,12 +288,10 @@ class _CameraScreenState extends State<CameraScreen>
       body: Stack(
         fit: StackFit.expand,
         children: [
-          // Camera Live Preview
           Center(
             child: CameraPreview(_controller!),
           ),
 
-          // Top Header Bar
           Positioned(
             top: 0,
             left: 0,
@@ -347,7 +343,6 @@ class _CameraScreenState extends State<CameraScreen>
             ),
           ),
 
-          // Bottom Controls
           Positioned(
             bottom: 0,
             left: 0,
@@ -356,7 +351,6 @@ class _CameraScreenState extends State<CameraScreen>
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  // Mode Selector: Photo / Video
                   if (!_isRecordingVideo)
                     Container(
                       margin: const EdgeInsets.only(bottom: 16),
@@ -374,7 +368,6 @@ class _CameraScreenState extends State<CameraScreen>
                       ),
                     ),
 
-                  // Trigger Button
                   Padding(
                     padding: const EdgeInsets.only(bottom: 24.0),
                     child: Row(

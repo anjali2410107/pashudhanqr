@@ -79,7 +79,6 @@ class UploadBloc extends Bloc<UploadEvent, UploadState> {
         simulateDelay: event.simulateDelay,
         simulateError: event.simulateError,
       ));
-      // Allow current item to complete or fail before next
       await stream.firstWhere((s) => s.activeUploadId != item.id);
     }
   }

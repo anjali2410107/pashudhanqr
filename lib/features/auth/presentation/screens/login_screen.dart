@@ -79,7 +79,6 @@ class _LoginScreenState extends State<LoginScreen> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      // Header Logo & Branding
                       Container(
                         width: 80,
                         height: 80,
@@ -112,7 +111,6 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       const SizedBox(height: 32),
 
-                      // Username field
                       TextFormField(
                         controller: _usernameController,
                         enabled: !isLoading,
@@ -130,7 +128,6 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       const SizedBox(height: 16),
 
-                      // Password field
                       TextFormField(
                         controller: _passwordController,
                         enabled: !isLoading,
@@ -161,7 +158,6 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       const SizedBox(height: 24),
 
-                      // Submit button
                       ElevatedButton(
                         onPressed: isLoading ? null : _submitLogin,
                         child: isLoading
@@ -187,7 +183,6 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       const SizedBox(height: 24),
 
-                      // Quick Test Credentials Card
                       Card(
                         elevation: 0,
                         color: Colors.blue.shade50,

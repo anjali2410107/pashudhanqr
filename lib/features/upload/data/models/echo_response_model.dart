@@ -74,3 +74,4 @@ class EchoResponseModel extends Equatable {
   @override
   List<Object?> get props => [form, files, timestamp, rawUrl];
 }
+

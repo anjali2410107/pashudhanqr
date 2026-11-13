@@ -26,7 +26,6 @@ class UploadRepository {
     }
 
     try {
-      // Parse MIME type safely
       MediaType? mediaType;
       try {
         final parts = item.mimeType.split('/');
@@ -37,8 +36,6 @@ class UploadRepository {
         mediaType = MediaType('application', 'octet-stream');
       }
 
-      // Memory-efficient streaming: MultipartFile.fromFile streams directly
-      // from disk, preventing Out-Of-Memory issues on large videos.
       final multipartFile = await MultipartFile.fromFile(
         item.filePath,
         filename: item.fileName,
@@ -55,7 +52,6 @@ class UploadRepository {
         'fileSize': item.fileSize.toString(),
       });
 
-      // Construct endpoint with optional testing simulation parameters (?delay=X, ?error=Y)
       final queryParams = <String, dynamic>{};
       if (simulateDelay != null && simulateDelay > 0) {
         queryParams['delay'] = simulateDelay;

@@ -104,11 +104,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
     emit(const AuthLoading(message: 'Injecting expired token and testing auto-refresh...'));
     try {
-      // Step 1: Inject expired token
       await authRepository.injectExpiredToken();
-
-      // Step 2: Make protected request to /me
-      // The Dio interceptor will catch 401, call /refresh, save new tokens, and retry /me!
       final refreshedUser = await authRepository.getCurrentUser();
 
       emit(AuthAuthenticated(
@@ -129,14 +125,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   ) async {
     emit(const AuthLoading(message: 'Simulating refresh failure...'));
     try {
-      // Corrupt refresh token and inject expired token
       await authRepository.injectInvalidRefreshToken();
       await authRepository.injectExpiredToken();
-
-      // Attempt protected call; should fail refresh and trigger logout
       await authRepository.getCurrentUser();
     } catch (e) {
-      // The interceptor triggers onSessionExpired which emits AuthUnauthenticated
       await authRepository.logout();
       emit(const AuthUnauthenticated(
         message: 'Refresh failed as expected (invalid refresh token). Session cleared.',

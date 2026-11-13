@@ -94,7 +94,6 @@ class _MediaPreviewScreenState extends State<MediaPreviewScreen> {
       ),
     );
 
-    // Pop preview and return accepted flag
     Navigator.of(context).pop(true);
   }
 
@@ -111,7 +110,6 @@ class _MediaPreviewScreenState extends State<MediaPreviewScreen> {
       ),
       body: Column(
         children: [
-          // Media Player / Viewer
           Expanded(
             child: Center(
               child: widget.isVideo
@@ -145,7 +143,6 @@ class _MediaPreviewScreenState extends State<MediaPreviewScreen> {
             ),
           ),
 
-          // Metadata and Action Bar
           Container(
             padding: const EdgeInsets.all(16.0),
             decoration: BoxDecoration(
@@ -216,7 +213,6 @@ class _MediaPreviewScreenState extends State<MediaPreviewScreen> {
                             side: const BorderSide(color: Colors.white38),
                           ),
                           onPressed: () {
-                            // Discard and retake
                             Navigator.of(context).pop(false);
                           },
                           icon: const Icon(Icons.refresh),

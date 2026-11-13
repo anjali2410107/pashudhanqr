@@ -40,10 +40,8 @@ class _GalleryPickerScreenState extends State<GalleryPickerScreen> {
   Future<void> _pickMultipleMedia() async {
     setState(() => _isLoading = true);
     try {
-      // Modern Android Photo Picker integration (multi-media)
       final List<XFile> pickedFiles = await _picker.pickMultipleMedia();
       if (pickedFiles.isEmpty) {
-        // User cancelled picker
         _showInfo('Selection cancelled');
         return;
       }
@@ -102,7 +100,6 @@ class _GalleryPickerScreenState extends State<GalleryPickerScreen> {
         continue;
       }
 
-      // Check if already in current list
       final alreadyPresent = _selectedItems.any((i) => i.path == xFile.path);
       if (!alreadyPresent) {
         _selectedItems.add(
@@ -231,7 +228,6 @@ class _GalleryPickerScreenState extends State<GalleryPickerScreen> {
       ),
       body: Column(
         children: [
-          // Picker Action Buttons Card
           Container(
             padding: const EdgeInsets.all(16.0),
             color: Colors.white,
@@ -268,7 +264,6 @@ class _GalleryPickerScreenState extends State<GalleryPickerScreen> {
           ),
           const Divider(height: 1),
 
-          // Header summary
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
             child: Row(
@@ -287,7 +282,6 @@ class _GalleryPickerScreenState extends State<GalleryPickerScreen> {
             ),
           ),
 
-          // Selected Items List
           Expanded(
             child: _isLoading
                 ? const Center(child: CircularProgressIndicator())
@@ -389,7 +383,6 @@ class _GalleryPickerScreenState extends State<GalleryPickerScreen> {
                       ),
           ),
 
-          // Bottom Add All to Queue Button
           if (_selectedItems.isNotEmpty)
             Container(
               padding: const EdgeInsets.all(16),

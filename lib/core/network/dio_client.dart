@@ -31,7 +31,6 @@ class DioClient {
       ),
     );
 
-    // Optional logging interceptor for debug visibility
     _dio.interceptors.add(
       LogInterceptor(
         requestHeader: true,

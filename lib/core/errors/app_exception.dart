@@ -24,3 +24,4 @@ class PermissionException extends AppException {
 class FileProcessingException extends AppException {
   const FileProcessingException(super.message, {super.statusCode, super.details});
 }
+

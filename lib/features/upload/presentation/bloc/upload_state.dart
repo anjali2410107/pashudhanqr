@@ -45,3 +45,4 @@ class UploadState extends Equatable {
   @override
   List<Object?> get props => [items, isUploading, activeUploadId, statusMessage];
 }
+
